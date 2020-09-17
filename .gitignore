@@ -8,6 +8,7 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+json-server/start-server.sh
 
 # macOS
 .DS_Store
