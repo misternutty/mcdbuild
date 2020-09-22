@@ -10,6 +10,7 @@ npm-debug.*
 web-build/
 json-server/start-server.sh
 ph-enchant.psd
+ph-item.psd
 
 # macOS
 .DS_Store

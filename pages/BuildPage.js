@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, Text, Image, StyleSheet, View } from 'react-native';
 import { CheckBox, Divider } from 'react-native-elements';
+import { baseUrl } from '../shared/baseUrl';
 
 export const BuildPage = () => {
     return (
@@ -32,7 +33,10 @@ const Item = () => {
 
     return (
         <View style={styles.item}>
-            <Image source={{ uri: '' }} style={styles.itemImage} />
+            <Image
+                source={require('../assets/item-default.png')}
+                style={styles.itemImage}
+            />
             <View style={styles.itemSummary}>
                 <Text style={styles.itemName}>Item Name</Text>
                 <Text style={styles.itemModifier}>o Modifier 1</Text>
