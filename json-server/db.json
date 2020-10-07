@@ -1,4 +1,96 @@
 {
+    "melee": [
+        {
+            "id": 0,
+            "name": "Axe",
+            "image": "images/melee/axe.png",
+            "baseItem": "axe",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        },
+        {
+            "id": 1,
+            "name": "Battlestaff of Terror",
+            "image": "images/melee/battlestaff-of-terror.png",
+            "baseItem": "battlestaff",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        },
+        {
+            "id": 2,
+            "name": "Battlestaff",
+            "image": "images/melee/battlestaff.png",
+            "baseItem": "battlestaff",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        }
+    ],
+    "armor": [
+        {
+            "id": 0,
+            "name": "Archer's Armor",
+            "image": "images/armor/archers-armor.png",
+            "baseItem": "hunter's armor",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        },
+        {
+            "id": 1,
+            "name": "Battle Robe",
+            "image": "images/armor/battle-robe.png",
+            "baseItem": "battle robe",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        },
+        {
+            "id": 2,
+            "name": "Beehive Armor",
+            "image": "images/armor/beehive-armor.png",
+            "baseItem": "beenest armor",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        }
+    ],
+    "ranged": [
+        {
+            "id": 0,
+            "name": "Auto Crossbow",
+            "image": "images/ranged/auto-crossbow.png",
+            "baseItem": "rapid crossbow",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        },
+        {
+            "id": 1,
+            "name": "Azure Seeker",
+            "image": "images/ranged/azure-seeker.png",
+            "baseItem": "crossbow",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        },
+        {
+            "id": 2,
+            "name": "Baby Crossbows",
+            "image": "images/ranged/baby-crossbows.png",
+            "baseItem": "dual crossbows",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        }
+    ],
+    "artifact": [
+        {
+            "id": 0,
+            "name": "Boots of Swiftness",
+            "image": "images/artifact/boots-of-swiftness.png",
+            "baseItem": "boots of swiftness",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        },
+        {
+            "id": 1,
+            "name": "Buzzy Nest",
+            "image": "images/artifact/buzzy-nest.png",
+            "baseItem": "buzzy nest",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        },
+        {
+            "id": 2,
+            "name": "Corrupted Beacon",
+            "image": "images/artifact/corrupted-beacon.png",
+            "baseItem": "corrupted beacon",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        }
+    ],
     "enchants": [
         {
             "id": 0,
