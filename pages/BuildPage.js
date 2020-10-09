@@ -14,58 +14,86 @@ import { baseUrl } from '../shared/baseUrl';
 import { SearchableList } from '../components/SearchableList';
 
 export const BuildPage = () => {
-    const [{ build }, setStore] = useStore();
+    const isComponentMounted = React.useRef(true);
+    const [store, setStore] = useStore();
+
+    useEffect(() => {
+        if (isComponentMounted.current) { // make sure the component is loaded
+            fetchDataList('melee');
+            fetchDataList('armor');
+            fetchDataList('ranged');
+            fetchDataList('artifact');
+        }
+        return () => {
+            isComponentMounted.current = false;
+        };
+    }, []);
+
+    const fetchDataList = (slot) => {
+        (async () => {
+            try {
+                const response = await fetch(baseUrl + slot);
+                const jsonData = await response.json();
+                setStore((old) => ({
+                    ...old,
+                    [slot]: jsonData,
+                }));
+            } catch (err) {
+                throw new Error(err);                
+            }
+        })();
+    }
 
     const setItem = (slot, item) => {
         setStore((old) => ({
             ...old,
-            build: { ...build, [slot]: item },
+            build: { ...store.build, [slot]: item },
         }));
-        console.log(build);
+        console.log(store.build);
     };
 
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.label}>Melee Weapon</Text>
-            <Item slot="melee" data={build.melee} onChange={setItem} />
+            <Item slot="melee" data={store.build.melee} onChange={setItem} />
             <Divider style={styles.divider} />
             <Text style={styles.label}>Armor</Text>
-            <Item slot="armor" data={build.armor} onChange={setItem} />
+            <Item slot="armor" data={store.build.armor} onChange={setItem} />
             <Divider style={styles.divider} />
             <Text style={styles.label}>Ranged Weapon</Text>
-            <Item slot="ranged" data={build.ranged} onChange={setItem} />
+            <Item slot="ranged" data={store.build.ranged} onChange={setItem} />
             <Divider style={styles.divider} />
             <Text style={styles.label}>Artifact 1</Text>
             <Item
                 slot="artifactOne"
-                data={build.artifactOne}
+                data={store.build.artifactOne}
                 onChange={setItem}
+                isArtifact
             />
             <Divider style={styles.divider} />
             <Text style={styles.label}>Artifact 2</Text>
             <Item
                 slot="artifactTwo"
-                data={build.artifactTwo}
+                data={store.build.artifactTwo}
                 onChange={setItem}
+                isArtifact
             />
             <Divider style={styles.divider} />
             <Text style={styles.label}>Artifact 3</Text>
             <Item
                 slot="artifactThree"
-                data={build.artifactThree}
+                data={store.build.artifactThree}
                 onChange={setItem}
+                isArtifact
             />
         </ScrollView>
     );
 };
 
-const Item = ({ slot, data, onChange }) => {
-    const isComponentMounted = React.useRef(true);
+const Item = ({ slot, data, onChange, isArtifact }) => {
     const [checked, setChecked] = React.useState(false);
     const [overlayVisible, setOverlayVisible] = React.useState(false);
-    const [store, setStore] = useStore();
-
-    const isArtifact = slot.startsWith('artifact');
+    const [store] = useStore();
 
     const toggleOverlay = () => {
         setOverlayVisible(!overlayVisible);
@@ -75,31 +103,6 @@ const Item = ({ slot, data, onChange }) => {
         onChange(slot, item);
         toggleOverlay();
     };
-
-    useEffect(() => {
-        if (isArtifact) slot = 'artifact'; // artifact slots use the same list
-
-        if (isComponentMounted.current) {
-            if (!store[slot]) {
-                console.log(`Fetching ${slot} list`);
-                (async () => {
-                    try {
-                        const response = await fetch(baseUrl + slot);
-                        const jsonData = await response.json();
-                        setStore((old) => ({
-                            ...old,
-                            [slot]: jsonData,
-                        }));
-                    } catch (err) {
-                        throw new Error(err);
-                    }
-                })();
-            }
-        }
-        return () => {
-            isComponentMounted.current = false;
-        };
-    }, []);
 
     return (
         <View style={styles.item}>
