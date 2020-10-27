@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
     ActivityIndicator,
     ScrollView,
@@ -9,64 +9,40 @@ import {
 } from 'react-native';
 import { CheckBox, Divider, Overlay } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import useStore from '../contexts/StoreContext';
+import { useGameData } from '../contexts/GameDataStore';
+import { useBuild, useBuildDispatch } from '../contexts/BuildStore';
 import { baseUrl } from '../shared/baseUrl';
 import { SearchableList } from '../components/SearchableList';
 
 export const BuildPage = () => {
-    const isComponentMounted = React.useRef(true);
-    const [store, setStore] = useStore();
+    // hook into the build store and dispatch for updating the build store
+    const build = useBuild();
+    const dispatch = useBuildDispatch();
 
-    useEffect(() => {
-        if (isComponentMounted.current) { // make sure the component is loaded
-            fetchDataList('melee');
-            fetchDataList('armor');
-            fetchDataList('ranged');
-            fetchDataList('artifact');
+    // store the item in the build slot by dispatching the slot and item to the build store
+    const setItem = (slot = '', item = {}) => dispatch({
+        type: 'SET_ITEM',
+        payload: {
+            slot: slot,
+            item: item
         }
-        return () => {
-            isComponentMounted.current = false;
-        };
-    }, []);
-
-    const fetchDataList = (slot) => {
-        (async () => {
-            try {
-                const response = await fetch(baseUrl + slot);
-                const jsonData = await response.json();
-                setStore((old) => ({
-                    ...old,
-                    [slot]: jsonData,
-                }));
-            } catch (err) {
-                throw new Error(err);                
-            }
-        })();
-    }
-
-    const setItem = (slot, item) => {
-        setStore((old) => ({
-            ...old,
-            build: { ...store.build, [slot]: item },
-        }));
-        console.log(store.build);
-    };
+    });
 
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.label}>Melee Weapon</Text>
-            <Item slot="melee" data={store.build.melee} onChange={setItem} />
+            <Item slot="melee" data={build.melee} onChange={setItem} />
             <Divider style={styles.divider} />
             <Text style={styles.label}>Armor</Text>
-            <Item slot="armor" data={store.build.armor} onChange={setItem} />
+            <Item slot="armor" data={build.armor} onChange={setItem} />
             <Divider style={styles.divider} />
             <Text style={styles.label}>Ranged Weapon</Text>
-            <Item slot="ranged" data={store.build.ranged} onChange={setItem} />
+            <Item slot="ranged" data={build.ranged} onChange={setItem} />
             <Divider style={styles.divider} />
             <Text style={styles.label}>Artifact 1</Text>
             <Item
                 slot="artifactOne"
-                data={store.build.artifactOne}
+                data={build.artifactOne}
                 onChange={setItem}
                 isArtifact
             />
@@ -74,7 +50,7 @@ export const BuildPage = () => {
             <Text style={styles.label}>Artifact 2</Text>
             <Item
                 slot="artifactTwo"
-                data={store.build.artifactTwo}
+                data={build.artifactTwo}
                 onChange={setItem}
                 isArtifact
             />
@@ -82,7 +58,7 @@ export const BuildPage = () => {
             <Text style={styles.label}>Artifact 3</Text>
             <Item
                 slot="artifactThree"
-                data={store.build.artifactThree}
+                data={build.artifactThree}
                 onChange={setItem}
                 isArtifact
             />
@@ -91,14 +67,18 @@ export const BuildPage = () => {
 };
 
 const Item = ({ slot, data, onChange, isArtifact }) => {
+    // set up local state
     const [checked, setChecked] = React.useState(false);
     const [overlayVisible, setOverlayVisible] = React.useState(false);
-    const [store] = useStore();
+
+    // grab the game data for populating the list of items
+    const store = useGameData();
 
     const toggleOverlay = () => {
         setOverlayVisible(!overlayVisible);
     };
 
+    // wrap the onChange prop function with the overlay toggle
     const setThisItem = (item) => {
         onChange(slot, item);
         toggleOverlay();
@@ -106,7 +86,7 @@ const Item = ({ slot, data, onChange, isArtifact }) => {
 
     return (
         <View style={styles.item}>
-            {store[slot] || (isArtifact && store['artifact']) ? (
+            {store[slot] || (isArtifact && store['artifact']) ? ( // artifacts use the same list
                 <>
                     <TouchableOpacity onPress={toggleOverlay}>
                         <Image
@@ -118,7 +98,7 @@ const Item = ({ slot, data, onChange, isArtifact }) => {
                             style={styles.itemImage}
                         />
                     </TouchableOpacity>
-                    {data.traits && (
+                    {data.traits && ( // only render if the item has traits
                         <View style={styles.itemSummary}>
                             <Text style={styles.itemName}>{data.name}</Text>
                             {data.traits.map((trait, index) => (
