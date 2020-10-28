@@ -1,0 +1,530 @@
+{
+    "melee": [
+        {
+            "id": 0,
+            "name": "Axe",
+            "image": "images/melee/axe.png",
+            "baseItem": "axe",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        },
+        {
+            "id": 1,
+            "name": "Battlestaff of Terror",
+            "image": "images/melee/battlestaff-of-terror.png",
+            "baseItem": "battlestaff",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        },
+        {
+            "id": 2,
+            "name": "Battlestaff",
+            "image": "images/melee/battlestaff.png",
+            "baseItem": "battlestaff",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        }
+    ],
+    "armor": [
+        {
+            "id": 0,
+            "name": "Archer's Armor",
+            "image": "images/armor/archers-armor.png",
+            "baseItem": "hunter's armor",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        },
+        {
+            "id": 1,
+            "name": "Battle Robe",
+            "image": "images/armor/battle-robe.png",
+            "baseItem": "battle robe",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        },
+        {
+            "id": 2,
+            "name": "Beehive Armor",
+            "image": "images/armor/beehive-armor.png",
+            "baseItem": "beenest armor",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        }
+    ],
+    "ranged": [
+        {
+            "id": 0,
+            "name": "Auto Crossbow",
+            "image": "images/ranged/auto-crossbow.png",
+            "baseItem": "rapid crossbow",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        },
+        {
+            "id": 1,
+            "name": "Azure Seeker",
+            "image": "images/ranged/azure-seeker.png",
+            "baseItem": "crossbow",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        },
+        {
+            "id": 2,
+            "name": "Baby Crossbows",
+            "image": "images/ranged/baby-crossbows.png",
+            "baseItem": "dual crossbows",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        }
+    ],
+    "artifact": [
+        {
+            "id": 0,
+            "name": "Boots of Swiftness",
+            "image": "images/artifact/boots-of-swiftness.png",
+            "baseItem": "boots of swiftness",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        },
+        {
+            "id": 1,
+            "name": "Buzzy Nest",
+            "image": "images/artifact/buzzy-nest.png",
+            "baseItem": "buzzy nest",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        },
+        {
+            "id": 2,
+            "name": "Corrupted Beacon",
+            "image": "images/artifact/corrupted-beacon.png",
+            "baseItem": "corrupted beacon",
+            "traits": ["Trait 1", "Trait 2", "Trait 3"]
+        }
+    ],
+    "enchants": [
+        {
+            "id": 0,
+            "name": "Accelerate",
+            "image": "images/enchants/accelerate.png",
+            "description": "Increases attack speed for each consecutive shot. Resets one second after the attack.",
+            "tags": ["ranged"]
+        },
+        {
+            "id": 1,
+            "name": "Anima Conduit",
+            "image": "images/enchants/anima-conduit.png",
+            "description": "Each soul you absorb grants a small amount of health.",
+            "tags": ["melee", "soul"]
+        },
+        {
+            "id": 2,
+            "name": "Bonus Shot",
+            "image": "images/enchants/bonus-shot.png",
+            "description": "Firing a shot also fires a second shot at a nearby enemy. The second shot has reduced damage.",
+            "tags": ["ranged"]
+        },
+        {
+            "id": 3,
+            "name": "Burning",
+            "image": "images/enchants/burning.png",
+            "description": "Every 0.5 seconds damages all enemies in melee range.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 4,
+            "name": "Chain Reaction",
+            "image": "images/enchants/chain-reaction.png",
+            "description": "Has a chance to fire five arrows in all directions on impact.",
+            "tags": ["ranged"]
+        },
+        {
+            "id": 5,
+            "name": "Chains",
+            "image": "images/enchants/chains.png",
+            "description": "Has a 30% chance to chain a cluster of mobs together and keep them bound for a short time.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 6,
+            "name": "Chilling",
+            "image": "images/enchants/chilling.png",
+            "description": "Emits a blast every two seconds that reduces the movement and attack speed of nearby enemies for one second.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 7,
+            "name": "Committed",
+            "image": "images/enchants/committed.png",
+            "description": "Deal increased damage against already wounded enemies.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 8,
+            "name": "Cool Down",
+            "image": "images/enchants/cooldown.png",
+            "description": "Reduces the cooldown time between uses of your Artifacts.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 9,
+            "name": "Cowardice",
+            "image": "images/enchants/cowardice.png",
+            "description": "When you are at full HP, you deal increased ranged and melee damage.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 10,
+            "name": "Critical Hit",
+            "image": "images/enchants/critical-hit.png",
+            "description": "Gives you a chance to inflict critical hits dealing triple damage.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 11,
+            "name": "Deflect",
+            "image": "images/enchants/deflect.png",
+            "description": "Grants a small chance to deflect incoming projectiles.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 12,
+            "name": "Echo",
+            "image": "images/enchants/echo.png",
+            "description": "Some of your attacks are followed up by another in rapid succession.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 13,
+            "name": "Electrified",
+            "image": "images/enchants/electrified.png",
+            "description": "Rolling zaps three nearby enemies with lightning bolts, dealing damage.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 14,
+            "name": "Enigma Resonator",
+            "image": "images/enchants/enigma-resonator.png",
+            "description": "Gives a chance to deal triple damage based on the number of souls you have.",
+            "tags": ["melee", "ranged", "soul"]
+        },
+        {
+            "id": 15,
+            "name": "Exploding",
+            "image": "images/enchants/exploding.png",
+            "description": "Mobs explode after they are defeated.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 16,
+            "name": "Explorer",
+            "image": "images/enchants/explorer.png",
+            "description": "For every one hundred blocks explored on the map, you regain a small amount of health.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 17,
+            "name": "Final Shout",
+            "image": "images/enchants/final-shout.png",
+            "description": "When your health drops below 25% all your artifacts are used (ignoring cooldown periods).",
+            "tags": ["armor"]
+        },
+        {
+            "id": 18,
+            "name": "Fire Aspect",
+            "image": "images/enchants/fire-aspect.png",
+            "description": "Sets mobs on fire for 3 seconds, dealing damage over time.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 19,
+            "name": "Fire Trail",
+            "image": "images/enchants/fire-trail.png",
+            "description": "Rolling creates a trail of fire behind you, which deals damage to mobs for four seconds.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 20,
+            "name": "Food Reserves",
+            "image": "images/enchants/food-reserves.png",
+            "description": "Whenever you use a healing potion, you also create random food items.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 21,
+            "name": "Fuse Shot",
+            "image": "images/enchants/fuse-shot.png",
+            "description": "Every few shots has a timed charge that explodes one second after impact, dealing 100% damage to nearby mobs.",
+            "tags": ["ranged"]
+        },
+        {
+            "id": 22,
+            "name": "Freezing",
+            "image": "images/enchants/freezing.png",
+            "description": "Slows mobs after hit for three seconds.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 23,
+            "name": "Frenzied",
+            "image": "images/enchants/frenzied.png",
+            "description": "While you are at less than half health, your attack speed is increased.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 24,
+            "name": "Gravity",
+            "image": "images/enchants/gravity.png",
+            "description": "This effect pulls mobs in range towards the weapon's impact point",
+            "tags": ["melee", "ranged"]
+        },
+        {
+            "id": 25,
+            "name": "Gravity Pulse",
+            "image": "images/enchants/gravity-pulse.png",
+            "description": "A blast occurs every five seconds that pulls nearby enemies towards you.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 26,
+            "name": "Growing",
+            "image": "images/enchants/growing.png",
+            "description": "The fired shot grows in the air, dealing extra damage to distant targets.",
+            "tags": ["ranged"]
+        },
+        {
+            "id": 27,
+            "name": "Health Synergy",
+            "image": "images/enchants/health-synergy.png",
+            "description": "When activating any artifact, you regain a small amount of health.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 28,
+            "name": "Infinity",
+            "image": "images/enchants/infinity.png",
+            "description": "Chance to immediately replenish an arrow after shooting.",
+            "tags": ["ranged"]
+        },
+        {
+            "id": 29,
+            "name": "Leeching",
+            "image": "images/enchants/leeching.png",
+            "description": "Defeating a mob heals you a small portion of the mob's max health.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 30,
+            "name": "Looting",
+            "image": "images/enchants/looting.png",
+            "description": "Increases the chance for mobs to drop consumables.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 31,
+            "name": "Multishot",
+            "image": "images/enchants/multishot.png",
+            "description": "Grants the chance to fire five arrows at once.",
+            "tags": ["ranged"]
+        },
+        {
+            "id": 32,
+            "name": "Piercing",
+            "image": "images/enchants/piercing.png",
+            "description": "Fired arrows sometimes gain the piercing effect, which allows them to fly through multiple mobs.",
+            "tags": ["ranged"]
+        },
+        {
+            "id": 33,
+            "name": "Poison Cloud",
+            "image": "images/enchants/poison-cloud.png",
+            "description": "Has a 30% chance to summon a poison cloud that deals damage to enemies in an area for three seconds.",
+            "tags": ["melee", "ranged"]
+        },
+        {
+            "id": 34,
+            "name": "Potion Barrier",
+            "image": "images/enchants/potion-barrier.png",
+            "description": "Whenever you use a healing potion, you take -90% damage for a short duration",
+            "tags": ["armor"]
+        },
+        {
+            "id": 35,
+            "name": "Power",
+            "image": "images/enchants/power.png",
+            "description": "Power boosts arrow damage.",
+            "tags": ["ranged"]
+        },
+        {
+            "id": 36,
+            "name": "Prospector",
+            "image": "images/enchants/prospector.png",
+            "description": "Find more Emeralds on fallen enemies.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 37,
+            "name": "Protection",
+            "image": "images/enchants/protection.png",
+            "description": "Reduces damage taken.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 38,
+            "name": "Punch",
+            "image": "images/enchants/punch.png",
+            "description": "Boosts arrow pushback.",
+            "tags": ["ranged"]
+        },
+        {
+            "id": 39,
+            "name": "Radiance",
+            "image": "images/enchants/radiance.png",
+            "description": "Has a 20% chance to spawn a circular area that heals all allies within it.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 40,
+            "name": "Radiance Shot",
+            "image": "images/enchants/radiance-shot.png",
+            "description": "Has a 20% chance to spawn a circular area that heals all allies within it.",
+            "tags": ["ranged"]
+        },
+        {
+            "id": 41,
+            "name": "Rampaging",
+            "image": "images/enchants/rampaging.png",
+            "description": "May give you a temporary attack speed boost.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 42,
+            "name": "Rapid Fire",
+            "image": "images/enchants/rapid-fire.png",
+            "description": "Increases your attack speed.",
+            "tags": ["ranged"]
+        },
+        {
+            "id": 43,
+            "name": "Recycler",
+            "image": "images/enchants/recycler.png",
+            "description": "Being hit by damage-inflicting projectiles will occasionally craft a small quiver of arrows.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 44,
+            "name": "Ricochet",
+            "image": "images/enchants/ricochet.png",
+            "description": "Small chance for arrows to ricochet off mobs.",
+            "tags": ["ranged"]
+        },
+        {
+            "id": 45,
+            "name": "Sharpness",
+            "image": "images/enchants/sharpness.png",
+            "description": "Makes your weapon sharper, making it deal more damage.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 46,
+            "name": "Shockwave",
+            "image": "images/enchants/shockwave.png",
+            "description": "The last attack in a combo launches a shockwave, damaging enemies.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 47,
+            "name": "Smiting",
+            "image": "images/enchants/smiting.png",
+            "description": "Increases damage against the Undead.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 48,
+            "name": "Snowball",
+            "image": "images/enchants/snowball.png",
+            "description": "Fires a snowball at a nearby enemy every few seconds, briefly stunning it.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 49,
+            "name": "Soul Siphon",
+            "image": "images/enchants/soul-siphon.png",
+            "description": "When you hit an enemy, gain a 10% chance to grant you a bunch of extra souls.",
+            "tags": ["melee", "soul"]
+        },
+        {
+            "id": 50,
+            "name": "Soul Speed",
+            "image": "images/enchants/soul-speed.png",
+            "description": "When you gather a soul, you gain a 1% stacking movement speed boost for a short time.",
+            "tags": ["armor", "soul"]
+        },
+        {
+            "id": 51,
+            "name": "Speed Synergy",
+            "image": "images/enchants/speed-synergy.png",
+            "description": "When activating any artifact, you gain 20% movement speed for a short time.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 52,
+            "name": "Stunning",
+            "image": "images/enchants/stunning.png",
+            "description": "Chance to temporarily stun enemies.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 53,
+            "name": "Supercharge",
+            "image": "images/enchants/supercharge.png",
+            "description": "Charged shots deal more damage and have more pushback.",
+            "tags": ["ranged"]
+        },
+        {
+            "id": 54,
+            "name": "Surprise Gift",
+            "image": "images/enchants/surprise-gift.png",
+            "description": "Whenever you use a healing potion, you sometimes create random consumables.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 55,
+            "name": "Swiftfooted",
+            "image": "images/enchants/swiftfooted.png",
+            "description": "Rolling makes you move faster for three seconds.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 56,
+            "name": "Swirling",
+            "image": "images/enchants/swirling.png",
+            "description": "The last attack in a combo performs a swirling attack, damaging nearby enemies.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 57,
+            "name": "Tempo Theft",
+            "image": "images/enchants/tempo-theft.png",
+            "description": "Steals a small amount of a mob's movement speed and gives it to you for four seconds.",
+            "tags": ["ranged"]
+        },
+        {
+            "id": 58,
+            "name": "Thorns",
+            "image": "images/enchants/thorns.png",
+            "description": "Whenever you take damage, you deal damage back to the attacker.",
+            "tags": ["armor"]
+        },
+        {
+            "id": 59,
+            "name": "Thundering",
+            "image": "images/enchants/thundering.png",
+            "description": "Has a 30% chance to summon a lightning strike that damages nearby enemies.",
+            "tags": ["melee"]
+        },
+        {
+            "id": 60,
+            "name": "Unchanting",
+            "image": "images/enchants/unchanting.png",
+            "description": "Projectiles deal more damage to enchanted enemies.",
+            "tags": ["ranged"]
+        },
+        {
+            "id": 61,
+            "name": "Wild Rage",
+            "image": "images/enchants/wild-rage.png",
+            "description": "Hitting an enemy has a chance to send it into a rage, making it hostile towards everyone.",
+            "tags": ["ranged"]
+        }
+    ]
+}
