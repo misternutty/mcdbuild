@@ -1,5 +1,4 @@
 import makeStore from '../shared/makeStore';
-import baseUrl from '../shared/baseUrl';
 
 const initialGameData = {
     isLoading: true,
@@ -12,27 +11,17 @@ const initialGameData = {
 
 const gameDataReducer = (state, action) => {
     switch (action.type) {
-        case "LOADING":
+        case "LOADING_BEGIN":
             return { ...state, isLoading: true };
-        case "FETCH":
-            if (action.payload.slot) {
-                (async () => {
-                    try {
-                        const response = await fetch(baseUrl + action.payload.slot);
-                        const jsonData = await response.json();
-                        return {
-                            ...state,
-                            isLoading: false,
-                            [action.payload.slot]: jsonData
-                        }
-                    } catch (err) {
-                        throw new Error(err);                
-                    }
-                })();
-            } else {
-                throw new Error('Cannot FETCH without an action.payload.slot');
+        case "LOADING_FINISH":
+            return { ...state, isLoading: false };
+        case "ADD":
+            if (!action.payload.slot) throw new Error('Cannot ADD game data without action.payload.slot', action);
+            if (!action.payload.data) throw new Error('Cannot ADD game data without action.payload.data', action);
+            return {
+                ...state,
+                [action.payload.slot]: action.payload.data
             }
-            break;
         default:
             throw new Error('Unknown action type!', action);
     }    
