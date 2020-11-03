@@ -1,12 +1,13 @@
 import 'react-native-gesture-handler';
 import React, { useEffect } from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { ActivityIndicator, ScrollView, Text, StyleSheet, Platform } from 'react-native';
+import { ActivityIndicator, StyleSheet, Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { GameDataProvider, useGameData, useGameDataDispatch } from './contexts/GameDataStore';
 import { BuildProvider } from './contexts/BuildStore';
-import { WishlistProvider, useWishlist } from './contexts/WishlistStore';
+import { WishlistProvider } from './contexts/WishlistStore';
 import { BuildPage } from './pages/BuildPage';
+import { WishlistPage } from './pages/WishlistPage';
 import baseUrl from './shared/baseUrl';
 
 const App = () => {
@@ -100,18 +101,3 @@ const styles = StyleSheet.create({
         paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight,
     },
 });
-
-const WishlistPage = () => {
-    const wishlist = useWishlist();
-
-    const items = wishlist.items.map( (item, index) => {
-        return <Text key={index}>{item.name}</Text>
-    })
-
-    return (
-        <ScrollView>
-            <Text>Wishlist Page</Text>
-            {items}
-        </ScrollView>
-    );
-};
