@@ -44,7 +44,7 @@ export const SearchableList = ({
                 <FlatList
                     data={itemList}
                     renderItem={renderItem}
-                    keyExtractor={(item) => item.id.toString()}
+                    keyExtractor={(item, index) => index.toString()}
                 />
             ) : (
                 <ActivityIndicator />

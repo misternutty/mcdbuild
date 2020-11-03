@@ -5,6 +5,7 @@ import { ActivityIndicator, ScrollView, Text, StyleSheet, Platform } from 'react
 import { NavigationContainer } from '@react-navigation/native';
 import { GameDataProvider, useGameData, useGameDataDispatch } from './contexts/GameDataStore';
 import { BuildProvider } from './contexts/BuildStore';
+import { WishlistProvider, useWishlist } from './contexts/WishlistStore';
 import { BuildPage } from './pages/BuildPage';
 import baseUrl from './shared/baseUrl';
 
@@ -83,9 +84,11 @@ export default () => {
     return (
         <NavigationContainer>
             <GameDataProvider>
-                <BuildProvider>
-                    <App />
-                </BuildProvider>
+                <WishlistProvider>
+                    <BuildProvider>
+                        <App />
+                    </BuildProvider>
+                </WishlistProvider>
             </GameDataProvider>
         </NavigationContainer>
     );
@@ -99,9 +102,21 @@ const styles = StyleSheet.create({
 });
 
 const WishlistPage = () => {
+    const wishlist = useWishlist();
+
+    useEffect(() => {
+            console.log(wishlist);
+        },[wishlist]
+    );
+
+    const items = wishlist.items.map( (item, index) => {
+        return <Text key={index}>{item.name}</Text>
+    })
+
     return (
         <ScrollView>
             <Text>Wishlist Page</Text>
+            {items}
         </ScrollView>
     );
 };

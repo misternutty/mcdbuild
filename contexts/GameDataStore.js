@@ -1,5 +1,4 @@
 import makeStore from '../shared/makeStore';
-import baseUrl from '../shared/baseUrl';
 
 const initialGameData = {
     isLoading: true,
@@ -17,15 +16,11 @@ const gameDataReducer = (state, action) => {
         case "LOADING_FINISH":
             return { ...state, isLoading: false };
         case "ADD":
-            if (!action.payload.slot) {
-                throw new Error('Cannot ADD game data without action.payload.slot');
-            } else if (!action.payload.data) {
-                throw new Error('Cannot ADD game data without action.payload.data');
-            } else {
-                return {
-                    ...state,
-                    [action.payload.slot]: action.payload.data
-                }
+            if (!action.payload.slot) throw new Error('Cannot ADD game data without action.payload.slot', action);
+            if (!action.payload.data) throw new Error('Cannot ADD game data without action.payload.data', action);
+            return {
+                ...state,
+                [action.payload.slot]: action.payload.data
             }
         default:
             throw new Error('Unknown action type!', action);

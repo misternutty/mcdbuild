@@ -11,6 +11,7 @@ import { CheckBox, Divider, Overlay } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useGameData } from '../contexts/GameDataStore';
 import { useBuild, useBuildDispatch } from '../contexts/BuildStore';
+import { useWishlistDispatch } from '../contexts/WishlistStore';
 import baseUrl from '../shared/baseUrl';
 import { SearchableList } from '../components/SearchableList';
 
@@ -71,8 +72,11 @@ const Item = ({ slot, data, onChange, isArtifact }) => {
     const [checked, setChecked] = React.useState(false);
     const [overlayVisible, setOverlayVisible] = React.useState(false);
 
-    // grab the game data for populating the list of items
+    // hook into the game data for populating the list of items
     const store = useGameData();
+
+    // hook into the wishlist dispatch to add items to the wishlist
+    const dispatch = useWishlistDispatch();
 
     const toggleOverlay = () => {
         setOverlayVisible(!overlayVisible);
@@ -81,8 +85,19 @@ const Item = ({ slot, data, onChange, isArtifact }) => {
     // wrap the onChange prop function with the overlay toggle
     const setThisItem = (item) => {
         onChange(slot, item);
+        checked && toggleWishlist();
         toggleOverlay();
     };
+
+    // bundle checkbox state toggling with wishlist dispatching
+    const toggleWishlist = () => {
+        const actionType = checked ? 'DELETE' : 'ADD'
+        setChecked(!checked);
+        dispatch({
+            type: actionType,
+            payload: data
+        })
+    }
 
     return (
         <View style={styles.item}>
@@ -112,7 +127,7 @@ const Item = ({ slot, data, onChange, isArtifact }) => {
                                 checkedIcon="check"
                                 checkedColor="green"
                                 checked={checked}
-                                onPress={() => setChecked(!checked)}
+                                onPress={toggleWishlist}
                             />
                         </View>
                     )}
