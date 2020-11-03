@@ -16,75 +16,68 @@ import baseUrl from '../shared/baseUrl';
 import { SearchableList } from '../components/SearchableList';
 
 export const BuildPage = () => {
-    // hook into the build store and dispatch for updating the build store
     const build = useBuild();
-    const dispatch = useBuildDispatch();
-
-    // store the item in the build slot by dispatching the slot and item to the build store
-    const setItem = (slot = '', item = {}) => dispatch({
-        type: 'SET_ITEM',
-        payload: {
-            slot: slot,
-            item: item
-        }
-    });
 
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.label}>Melee Weapon</Text>
-            <Item slot="melee" data={build.melee} onChange={setItem} />
+            <Item slot="melee" itemData={build.melee} />
             <Divider style={styles.divider} />
             <Text style={styles.label}>Armor</Text>
-            <Item slot="armor" data={build.armor} onChange={setItem} />
+            <Item slot="armor" itemData={build.armor} />
             <Divider style={styles.divider} />
             <Text style={styles.label}>Ranged Weapon</Text>
-            <Item slot="ranged" data={build.ranged} onChange={setItem} />
+            <Item slot="ranged" itemData={build.ranged} />
             <Divider style={styles.divider} />
             <Text style={styles.label}>Artifact 1</Text>
             <Item
                 slot="artifactOne"
-                data={build.artifactOne}
-                onChange={setItem}
+                itemData={build.artifactOne}
                 isArtifact
             />
             <Divider style={styles.divider} />
             <Text style={styles.label}>Artifact 2</Text>
             <Item
                 slot="artifactTwo"
-                data={build.artifactTwo}
-                onChange={setItem}
+                itemData={build.artifactTwo}
                 isArtifact
             />
             <Divider style={styles.divider} />
             <Text style={styles.label}>Artifact 3</Text>
             <Item
                 slot="artifactThree"
-                data={build.artifactThree}
-                onChange={setItem}
+                itemData={build.artifactThree}
                 isArtifact
             />
         </ScrollView>
     );
 };
 
-const Item = ({ slot, data, onChange, isArtifact }) => {
+const Item = ({ slot, itemData, isArtifact }) => {
     // set up local state
     const [checked, setChecked] = React.useState(false);
     const [overlayVisible, setOverlayVisible] = React.useState(false);
 
     // hook into the game data for populating the list of items
-    const store = useGameData();
+    const gameData = useGameData();
 
-    // hook into the wishlist dispatch to add items to the wishlist
-    const dispatch = useWishlistDispatch();
+    // hook into build dispatch to update build items
+    const dispatchToBuild = useBuildDispatch();
 
-    const toggleOverlay = () => {
-        setOverlayVisible(!overlayVisible);
-    };
+    // hook into the wishlist dispatch to add/delete wishlist items
+    const dispatchToWishlist = useWishlistDispatch();
 
-    // wrap the onChange prop function with the overlay toggle
-    const setThisItem = (item) => {
-        onChange(slot, item);
+    const setItem = (item) => {
+        // dispatch item update when new item is set
+        dispatchToBuild({
+            type: 'SET_ITEM',
+            payload: {
+                slot: slot,
+                item: item
+            }
+        });
+
+        // if last item was wishlisted, remove it from the wishlist
         checked && toggleWishlist();
         toggleOverlay();
     };
@@ -93,30 +86,34 @@ const Item = ({ slot, data, onChange, isArtifact }) => {
     const toggleWishlist = () => {
         const actionType = checked ? 'DELETE' : 'ADD'
         setChecked(!checked);
-        dispatch({
+        dispatchToWishlist({
             type: actionType,
-            payload: data
-        })
+            payload: itemData
+        });
     }
+    
+    const toggleOverlay = () => {
+        setOverlayVisible(!overlayVisible);
+    };
 
     return (
         <View style={styles.item}>
-            {store[slot] || (isArtifact && store['artifact']) ? ( // artifacts use the same list
+            {gameData[slot] || (isArtifact && gameData['artifact']) ? ( // artifacts use the same list
                 <>
                     <TouchableOpacity onPress={toggleOverlay}>
                         <Image
                             source={
-                                data.image
-                                    ? { uri: baseUrl + data.image }
+                                itemData.image
+                                    ? { uri: baseUrl + itemData.image }
                                     : require('../assets/item-default.png')
                             }
                             style={styles.itemImage}
                         />
                     </TouchableOpacity>
-                    {data.traits && ( // only render if the item has traits
+                    {itemData.traits && ( // only render if the item has traits
                         <View style={styles.itemSummary}>
-                            <Text style={styles.itemName}>{data.name}</Text>
-                            {data.traits.map((trait, index) => (
+                            <Text style={styles.itemName}>{itemData.name}</Text>
+                            {itemData.traits.map((trait, index) => (
                                 <Text style={styles.itemModifier} key={index}>
                                     {trait}
                                 </Text>
@@ -136,8 +133,8 @@ const Item = ({ slot, data, onChange, isArtifact }) => {
                         onBackdropPress={toggleOverlay}
                     >
                         <SearchableList
-                            data={isArtifact ? store['artifact'] : store[slot]}
-                            onSelection={setThisItem}
+                            data={isArtifact ? gameData['artifact'] : gameData[slot]}
+                            onSelection={setItem}
                         />
                     </Overlay>
                 </>
