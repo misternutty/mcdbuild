@@ -8,14 +8,12 @@ const wishlistReducer = (state, action) => {
     switch (action.type) {
         case "ADD":
             if (!action.payload) throw new Error('Cannot ADD item to wishlist without a payload', action);
-            console.log('wishlist add dispatch hit');
             return {
                 ...state,
                 items: state.items.concat(action.payload)
             }
         case "DELETE":
             if (!action.payload) throw new Error('Cannot DELETE item from wishlist without a payload', action);
-            console.log('wishlist delete dispatch hit');
             return {
                 ...state,
                 items: state.items.filter(item => item !== action.payload),

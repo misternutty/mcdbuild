@@ -104,11 +104,6 @@ const styles = StyleSheet.create({
 const WishlistPage = () => {
     const wishlist = useWishlist();
 
-    useEffect(() => {
-            console.log(wishlist);
-        },[wishlist]
-    );
-
     const items = wishlist.items.map( (item, index) => {
         return <Text key={index}>{item.name}</Text>
     })
