@@ -11,7 +11,7 @@ import { CheckBox, Divider, Overlay } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useGameData } from '../contexts/GameDataStore';
 import { useBuild, useBuildDispatch } from '../contexts/BuildStore';
-import { baseUrl } from '../shared/baseUrl';
+import baseUrl from '../shared/baseUrl';
 import { SearchableList } from '../components/SearchableList';
 
 export const BuildPage = () => {

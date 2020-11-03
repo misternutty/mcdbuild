@@ -16,7 +16,7 @@ const buildReducer = (state, action) => {
             if (!action.payload.item) throw new Error('Cannot setBuildItem without an item', action);
             return {
                 ...state,
-                build: {...build, [action.payload.slot]: action.payload.item}
+                [action.payload.slot]: action.payload.item
             }
         default:
             throw new Error('Unknown action type!', action);
