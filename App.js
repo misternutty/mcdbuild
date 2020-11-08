@@ -29,7 +29,8 @@ const App = () => {
             'melee',
             'armor',
             'ranged',
-            'artifact'
+            'artifact',
+            'levels',
         ];
 
         // fetch the data for a given slot
