@@ -1,4 +1,33 @@
 {
+    "levels": [
+        {
+            "name": "Level 1",
+            "drops": [
+                "axe",
+                "hunter's armor",
+                "rapid crossbow",
+                "boots of swiftness"
+            ]
+        },
+        {
+            "name": "Level 2",
+            "drops": [
+                "battlestaff",
+                "battle robe",
+                "crossbow",
+                "buzzy nest"
+            ]
+        },
+        {
+            "name": "Level 3",
+            "drops": [
+                "battlestaff",
+                "beenest armor",
+                "dual crossbows",
+                "corrupted beacon"
+            ]
+        }
+    ],
     "melee": [
         {
             "id": 0,

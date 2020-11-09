@@ -6,13 +6,13 @@ const initialWishlist = {
 
 const wishlistReducer = (state, action) => {
     switch (action.type) {
-        case "ADD":
+        case 'ADD':
             if (!action.payload) throw new Error('Cannot ADD item to wishlist without a payload', action);
             return {
                 ...state,
                 items: state.items.concat(action.payload)
             }
-        case "DELETE":
+        case 'DELETE':
             if (!action.payload) throw new Error('Cannot DELETE item from wishlist without a payload', action);
             return {
                 ...state,
